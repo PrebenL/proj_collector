@@ -1,24 +1,21 @@
 {% load static %}
-<div class="card-group border-dark">
+<div class="card-group">
   {% for h in cardh %}
     <div class="card" style="background: #182d47;">
-    {% with 'app_homepage/web_images/'|add:h|add:'.svg' as icon %}
-    <img src="{% static icon%}" class="card-img-top h-25 w-25 mx-auto">
-    {% endwith %}
-    <div class="card-body" style="background: #182d47;">
-    <h1 class="card-title" style="font-family: 'Bangers', cursive; color: #465962; font-size: 70px;">
-    {{h}}
-    </h1>
-
-    {% for c in card%}
-    {% if c.card_category == h|lower %}
-    <p style="font-family: 'Bangers', cursive; background: #253345; font-size: 35px;" >
-    <a href="{{c.card_url}}" target="_blank" rel="noopener noreferrer" class="link-danger" style="text-decoration: none;">{{c.card_title}}
-    </a>
-    </p>
-    {% endif %}
-    {% endfor %}
-  {% endfor %}
+      {% with 'app_homepage/web_images/'|add:h|add:'.svg' as icon %}
+      <img src="{% static icon%}" class="card-img-top h-25 w-25 mx-auto">
+      {% endwith %}
+      <div class="card-body" style="background: #182d47;">
+        <h1 class="card-title mx-auto" style="font-family: 'Bangers', cursive; color: #465962; font-size: 70px;">{{h}}</h1>
+        {% for c in card%}
+          {% if c.card_category == h|lower %}
+            <p style="font-family: 'Bangers', cursive; background: #253345; font-size: 35px;" >
+            <a href="{{c.card_url}}" target="_blank" rel="noopener noreferrer" class="link-danger" style="text-decoration: none;">{{c.card_title}}
+            </a>
+            </p>
+          {% endif %}
+        {% endfor %}
+      </div>
     </div>
-  </div>
+  {% endfor %}
 </div>
