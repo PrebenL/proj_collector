@@ -1,0 +1,45 @@
+<table class="table table-striped table-dark">
+    {% for h in anime_ts_header %}
+    <th class="table-striped">{{h}}</th>
+    {% endfor %}
+    {% for m in anime %}
+    <tr>
+        <td class="table-striped" style="width: 25px">{{ forloop.counter }}</td>
+        <td class="table-striped w-50">
+            {% if m.anime_watching_status == "Planning_To_Watch" %}
+                <button class="btn btn-info h-25" type="button" data-bs-toggle="collapse" data-bs-target="#{{m.anime_id}}" aria-expanded="false" aria-controls="{{m.anime_id}}">
+                    {{m.anime_title}}
+                </button>
+            {% elif m.anime_watching_status == "Completed"%}
+                <button class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#{{m.anime_id}}" aria-expanded="false" aria-controls="{{m.anime_id}}">
+                    {{m.anime_title}}
+                </button>
+            {% elif m.anime_watching_status == "Watching" %}
+                <button class="btn btn-warning" type="button" data-bs-toggle="collapse" data-bs-target="#{{m.anime_id}}" aria-expanded="false" aria-controls="{{m.anime_id}}">
+                    {{m.anime_title}}
+                </button>
+            {% else %}
+                <button class="btn btn-danger" type="button" data-bs-toggle="collapse" data-bs-target="#{{m.anime_id}}" aria-expanded="false" aria-controls="{{m.anime_id}}">
+                    {{m.anime_title}}
+                </button>
+            {% endif %}
+            <div class="collapse" id="{{m.anime_id}}">
+                <ul class="list-group" style="padding-top: 15px;">
+                    <li class="list-group-item {% if m.anime_watched_episodes == m.anime_episodes %}bg-success{% elif m.anime_watched_episodes > 0 %}bg-warning{% else %}bg-danger{% endif %}"></li>
+                    <li class="list-group-item"><h5>Watched: <strong>{{m.anime_watched_episodes}} out of {{m.anime_episodes}} Episodes</strong></h5></li>
+                    <li class="list-group-item"><h5>Anime Status: <strong>{{m.anime_status}}</strong></h5></li>
+                    <li class="list-group-item"><h5>Studio: <strong>{{m.anime_studio}}</strong></h5></li>
+                </ul>
+            </div>
+        </td>
+        <td class="table-striped">{{m.anime_watching_status}}
+            <div class="collapse" id="{{m.anime_id}}">
+                <ul class="list-group w-50" style="padding-top: 30px;">
+                    <li class="list-group-item {% if m.anime_watched_episodes == m.anime_episodes %}bg-success{% elif m.anime_watched_episodes > 0 %}bg-warning{% else %}bg-danger{% endif %}"></li>
+                    <li class="list-group-item bg-dark"><img src="{{m.anime_cover_image}}" class="img-fluid img-thumbnail"></li>
+                </ul>
+            </div>
+        </td>   
+    </tr>
+    {% endfor %}
+</table>

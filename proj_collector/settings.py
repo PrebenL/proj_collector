@@ -16,6 +16,7 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
+    'app_anime.apps.AppAnimeConfig',
     'app_manga.apps.AppMangaConfig',
     'app_homepage.apps.AppHomepageConfig',
     'django.contrib.admin',
