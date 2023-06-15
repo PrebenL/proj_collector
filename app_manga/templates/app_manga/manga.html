@@ -1,0 +1,47 @@
+<table class="table table-striped table-dark">
+    {% for h in manga_ts_header %}
+    <th class="table-striped">{{h}}</th>
+    {% endfor %}
+    {% for m in manga %}
+    <tr>
+        <td class="table-striped" style="width: 25px">{{ forloop.counter }}</td>
+        <td class="table-striped w-50">
+            {% if m.manga_reading_status == "Planning_To_Read" %}
+                <button class="btn btn-info h-25" type="button" data-bs-toggle="collapse" data-bs-target="#{{m.manga_id}}" aria-expanded="false" aria-controls="{{m.manga_id}}">
+                    {{m.manga_title}}
+                </button>
+            {% elif m.manga_reading_status == "Completed"%}
+                <button class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#{{m.manga_id}}" aria-expanded="false" aria-controls="{{m.manga_id}}">
+                    {{m.manga_title}}
+                </button>
+            {% elif m.manga_reading_status == "Reading" %}
+                <button class="btn btn-warning" type="button" data-bs-toggle="collapse" data-bs-target="#{{m.manga_id}}" aria-expanded="false" aria-controls="{{m.manga_id}}">
+                    {{m.manga_title}}
+                </button>
+            {% else %}
+                <button class="btn btn-danger" type="button" data-bs-toggle="collapse" data-bs-target="#{{m.manga_id}}" aria-expanded="false" aria-controls="{{m.manga_id}}">
+                    {{m.manga_title}}
+                </button>
+            {% endif %}
+            <div class="collapse" id="{{m.manga_id}}">
+                <ul class="list-group" style="padding-top: 15px;">
+                    <li class="list-group-item {% if m.manga_read_volumes == m.manga_volumes %}bg-success{% elif m.manga_read_volumes > 0 %}bg-warning{% else %}bg-danger{% endif %}"></li>
+                    <li class="list-group-item"><h5>Read: <strong>{{m.manga_read_volumes}} out of {{m.manga_volumes}} Volumes</strong></h5></li>
+                    <li class="list-group-item"><h5>Manga Status: <strong>{{m.manga_status}}</strong></h5></li>
+                    <li class="list-group-item"><h5>Author: <strong>{{m.manga_author}}</strong></h5></li>
+                    <li class="list-group-item"><h5>Publisher: <strong>{{m.manga_publisher}}</strong></h5></li>
+
+                </ul>
+            </div>
+        </td>
+        <td class="table-striped">{{m.manga_reading_status}}
+            <div class="collapse" id="{{m.manga_id}}">
+                <ul class="list-group w-50" style="padding-top: 30px;">
+                    <li class="list-group-item {% if m.manga_read_volumes == m.manga_volumes %}bg-success{% elif m.manga_read_volumes > 0 %}bg-warning{% else %}bg-danger{% endif %}"></li>
+                    <li class="list-group-item bg-dark"><img src="{{m.manga_cover_image}}" class="img-fluid img-thumbnail"></li>
+                </ul>
+            </div>
+        </td>   
+    </tr>
+    {% endfor %}
+</table>

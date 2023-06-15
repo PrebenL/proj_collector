@@ -1,0 +1,45 @@
+{% load static %}
+<div class="card-group border-dark">
+
+  <div class="card" style="background: #182d47;">
+    <img src="{% static 'app_homepage/web_images/code.svg'%}" class="card-img-top h-25 w-25 mx-auto">
+    <div class="card-body" style="background: #182d47;">
+      <h1 class="card-title" style="font-family: 'Bangers', cursive; color: #465962; font-size: 70px;">DEV</h1>
+      {% for c in card%}
+        {% if c.card_category == "dev" %}
+          <p style="font-family: 'Bangers', cursive;background: #253345; font-size: 35px;">
+            <a href="{{c.card_url}}" target="_blank" rel="noopener noreferrer" class="link-danger" style="text-decoration: none;">{{c.card_title}}</a>
+          </p>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="card" style="background: #182d47;">
+    <img src="{% static 'app_homepage/web_images/download.svg'%}" class="card-img-top h-25 w-25 mx-auto">
+    <div class="card-body" style="background: #182d47;">
+      <h1 class="card-title" style="font-family: 'Bangers', cursive; color: #465962; font-size: 70px;">TORRENTS</h1>
+      {% for c in card%}
+        {% if c.card_category == "torrents" %}
+          <p style="font-family: 'Bangers', cursive; background: #253345; font-size: 35px;" >
+            <a href="{{c.card_url}}" target="_blank" rel="noopener noreferrer" class="link-danger" style="text-decoration: none;">{{c.card_title}}</a>
+          </p>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+  </div>
+  <div class="card border-dark" style="background: #182d47;">
+    <img src="{% static 'app_homepage/web_images/film.svg'%}" class="card-img-top h-25 w-25 mx-auto">
+    <div class="card-body" style="background: #182d47;">
+      <h1 class="card-title" style="font-family: 'Bangers', cursive; color: #465962; font-size: 70px;">MEDIA</h1>
+      {% for c in card%}
+        {% if c.card_category == "media" %}
+          <p style="font-family: 'Bangers', cursive; background: #253345; font-size: 35px;">
+            <a href="{{c.card_url}}" target="_blank" rel="noopener noreferrer" class="link-danger" style="text-decoration: none;">{{c.card_title}}</a>
+          </p>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>

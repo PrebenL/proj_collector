@@ -1,0 +1,39 @@
+<div>
+	<table class="table table-striped border-dark mt-5" style="background: #182d47;">
+		{% for h in w_header %}
+		<th style="font-family: 'Bangers', cursive; color: #465962; font-size: 35px;" class="w-25">{{h}}</th>
+		{% endfor %}
+		{% load static %}
+		{% for key,v in show.items %}
+			<tr style="background: #182d47;">
+				{% for w in watch %}
+					{% if w.show_name == key %}
+						<td style="background: #182d47; font-family: 'Bangers', cursive; font-size: 25px;" class="text-danger">{{w.show_aka_name}}</td>
+					{% endif %}
+				{% endfor %}
+
+				{% for i in v %}
+					{% if 'https' not in i%}
+						<td style="background: #182d47; font-family: 'Bangers', cursive; font-size: 25px;" class="w-25 text-danger">{{i}}</td>
+					{% else %}
+						{% if 'nya' not in i %}
+							<td style="background: #182d47" class="text-danger">
+								<a href="{{i}}">
+									<img class="rounded w-25" src="{% static 'app_homepage/web_images/play.svg' %}">
+									</img>
+								</a>
+							</td>
+						{% else %}
+							<td style="background: #182d47" class="text-danger">
+							<a href="{{i}}">
+									<img class="rounded w-25" src="{% static 'app_homepage/web_images/down.svg' %}">
+									</img>
+								</a>
+							</td>
+						{% endif %}
+					{% endif %}
+				{% endfor %}
+			</tr>
+		{% endfor %}
+	</table>
+</div>
