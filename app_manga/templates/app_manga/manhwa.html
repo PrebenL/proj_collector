@@ -1,40 +1,42 @@
-<table class="table table-striped table-dark">
-    {% for h in manhwa_ts_header %}
-    <th class="table-striped">{{h}}</th>
-    {% endfor %}
-    {% for m in manhwa %}
-    <tr>
-        <td class="table-striped" style="width: 25px">{{ forloop.counter }}</td>
-        <td class="table-striped w-50">
-            {% if m.manhwa_read_chapters == 0 %}
-                <button class="btn btn-danger h-25" type="button" data-bs-toggle="collapse" data-bs-target="#_{{m.manhwa_id}}" aria-expanded="false" aria-controls="_{{m.manhwa_id}}">
-                    {{m.manhwa_title}}
-                </button>
-            {% elif m.manhwa_read_chapters == m.manhwa_chapters %}
-                <button class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#_{{m.manhwa_id}}" aria-expanded="false" aria-controls="_{{m.manhwa_id}}">
-                    {{m.manhwa_title}}
-                </button>
-            {% elif m.manhwa_read_chapters > 0 %}
-                <button class="btn btn-warning" type="button" data-bs-toggle="collapse" data-bs-target="#_{{m.manhwa_id}}" aria-expanded="false" aria-controls="_{{m.manhwa_id}}">
-                    {{m.manhwa_title}}
-                </button>
-            {% endif %}
-            <div class="collapse" id="_{{m.manhwa_id}}">
-                <ul class="list-group" style="padding-top: 15px;">
-                    <li class="list-group-item {% if m.manhwa_read_volumes == m.manhwa_volumes %}bg-success{% elif m.manhwa_read_volumes > 0 %}bg-warning{% else %}bg-danger{% endif %}"></li>
-                    <li class="list-group-item bg-secondary text-white"><h5>Read: <strong>{{m.manhwa_read_chapters}} out of {{m.manhwa_chapters}} Chapters</strong></h5></li>
-                    <li class="list-group-item bg-secondary text-white"><h5>manhwa Status: <strong>{{m.manhwa_status}}</strong></h5></li>
-                </ul>
-            </div>
-        </td>
-        <td class="table-striped">{{m.manhwa_reading_status}}
-            <div class="collapse" id="_{{m.manhwa_id}}">
-                <ul class="list-group w-50" style="padding-top: 30px;">
-                    <li class="list-group-item {% if m.manhwa_read_chapters == m.manhwa_chapters %}bg-success{% elif m.manhwa_read_chapters > 0 %}bg-warning{% else %}bg-danger{% endif %}"></li>
-                    <li class="list-group-item bg-dark"><img src="{{m.manhwa_cover_image}}" class="img-fluid img-thumbnail"></li>
-                </ul>
-            </div>
-        </td>
-    </tr>
-    {% endfor %}
-</table>
+<div class="overflow-scroll" style="height: 450px;">
+    <table class="table table-striped table-dark">
+        {% for h in manhwa_ts_header %}
+        <th class="table-striped">{{h}}</th>
+        {% endfor %}
+        {% for m in manhwa %}
+        <tr>
+            <td class="table-striped" style="width: 25px">{{ forloop.counter }}</td>
+            <td class="table-striped w-50">
+                {% if m.manhwa_read_chapters == 0 %}
+                    <button class="btn btn-danger h-25" type="button" data-bs-toggle="collapse" data-bs-target="#_{{m.manhwa_id}}" aria-expanded="false" aria-controls="_{{m.manhwa_id}}">
+                        {{m.manhwa_title}}
+                    </button>
+                {% elif m.manhwa_read_chapters == m.manhwa_chapters %}
+                    <button class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#_{{m.manhwa_id}}" aria-expanded="false" aria-controls="_{{m.manhwa_id}}">
+                        {{m.manhwa_title}}
+                    </button>
+                {% elif m.manhwa_read_chapters > 0 %}
+                    <button class="btn btn-warning" type="button" data-bs-toggle="collapse" data-bs-target="#_{{m.manhwa_id}}" aria-expanded="false" aria-controls="_{{m.manhwa_id}}">
+                        {{m.manhwa_title}}
+                    </button>
+                {% endif %}
+                <div class="collapse" id="_{{m.manhwa_id}}">
+                    <ul class="list-group" style="padding-top: 15px;">
+                        <li class="list-group-item {% if m.manhwa_read_volumes == m.manhwa_volumes %}bg-success{% elif m.manhwa_read_volumes > 0 %}bg-warning{% else %}bg-danger{% endif %}"></li>
+                        <li class="list-group-item bg-secondary text-white"><h5>Read: <strong>{{m.manhwa_read_chapters}} out of {{m.manhwa_chapters}} Chapters</strong></h5></li>
+                        <li class="list-group-item bg-secondary text-white"><h5>Manhwa Status: <strong>{{m.manhwa_status}}</strong></h5></li>
+                    </ul>
+                </div>
+            </td>
+            <td class="table-striped">{{m.manhwa_reading_status}}
+                <div class="collapse" id="_{{m.manhwa_id}}">
+                    <ul class="list-group w-50" style="padding-top: 30px;">
+                        <li class="list-group-item {% if m.manhwa_read_chapters == m.manhwa_chapters %}bg-success{% elif m.manhwa_read_chapters > 0 %}bg-warning{% else %}bg-danger{% endif %}"></li>
+                        <li class="list-group-item bg-dark"><img src="{{m.manhwa_cover_image}}" class="img-fluid img-thumbnail"></li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
