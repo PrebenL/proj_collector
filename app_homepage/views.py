@@ -11,6 +11,6 @@ def serve_homepage(request):
 	for x in watch:
 		show_list.append(x.show_name)
 		
-	wanted = ext.extractMostRecentAnimeList('https://gogoanime.llc/?page=', show_list)
+	wanted = ext.extractMostRecentAnimeList('https://gogoanime.hu/?page=', show_list)
 	context = {'card': card, 'watch': watch, 'show': wanted, 'w_header': watch_headers, 'cardh': card_h}
 	return render(request, 'app_homepage/homepage_index.html', context)
